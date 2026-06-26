@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mohamed Idrees S — Antigravity Portfolio</title>
+  <meta name="description" content="Portfolio of Mohamed Idrees S, Full Stack Developer & AI/ML Enthusiast. Built with an antigravity, zero-G deep space theme using Three.js and GSAP.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,700;1,300&family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Custom Cursor Follower -->
+  <div class="cursor-follower" id="cursor-follower"></div>
+  <div class="cursor-dot" id="cursor-dot"></div>
+
+  <!-- Deep Space Canvas -->
+  <canvas id="space-canvas"></canvas>
+
+  <!-- HUD Interface Elements (Fixed Overlays) -->
+  <div class="hud-overlay top-left">
+    <div class="hud-logo">
+      <span class="hud-accent">&lt;</span>IDREES.DEV<span class="hud-accent">&gt;</span>
+    </div>
+    <div class="hud-status">
+      <span class="pulse-dot"></span> SYSTEM: ONLINE
+    </div>
+  </div>
+
+  <div class="hud-overlay top-right">
+    <div class="hud-coord-label">COORDINATES</div>
+    <div class="hud-coords" id="hud-coords">X: 0.00 | Y: 0.00 | Z: 0.00</div>
+    <div class="hud-gravity">GRAVITY: <span class="hud-accent">0.00 G</span></div>
+  </div>
+
+  <div class="hud-overlay bottom-left">
+    <div class="hud-stat-box">
+      <span class="label">WARP FACTOR</span>
+      <span class="value" id="warp-factor">1.00c</span>
+    </div>
+    <div class="hud-stat-box">
+      <span class="label">DEPTH</span>
+      <span class="value" id="hud-depth">0.00 LY</span>
+    </div>
+  </div>
+
+  <div class="hud-overlay bottom-right">
+    <div class="hud-nav-hint">
+      <span class="label">NAVIGATION</span>
+      <span class="hint-text">SCROLL TO THRUST THROUGH SPACE</span>
+      <div class="scroll-indicator-bar">
+        <div class="scroll-progress-indicator" id="scroll-progress-bar"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Perspective Viewport Container -->
+  <div id="viewport">
+    <div class="sections-container" id="sections-container">
+      
+      <!-- HERO SECTION -->
+      <section class="space-section active" id="hero-section" data-depth="0">
+        <div class="hero-content">
+          <div class="hero-pretitle font-mono hud-accent">SYS_INIT // WELCOME TO ZERO GRAVITY</div>
+          <h1 class="hero-name" id="hero-name">
+            <span class="char">M</span><span class="char">o</span><span class="char">h</span><span class="char">a</span><span class="char">m</span><span class="char">e</span><span class="char">d</span>
+            <span class="char">I</span><span class="char">d</span><span class="char">r</span><span class="char">e</span><span class="char">e</span><span class="char">s</span>
+            <span class="char">S</span>
+          </h1>
+          <div class="hero-subtitle font-mono">
+            <span class="subtitle-word">Engineer.</span>
+            <span class="subtitle-word">Builder.</span>
+            <span class="subtitle-word">Lead.</span>
+          </div>
+          <div class="hero-meta font-mono">
+            <p>B.E. Computer Science & Engineering</p>
+            <p class="muted">Nandha Engineering College &middot; Erode</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT SECTION -->
+      <section class="space-section" id="about-section" data-depth="1">
+        <div class="hud-panel glass-card" data-tilt data-tilt-max="10" data-tilt-glare data-tilt-max-glare="0.2">
+          <div class="hud-panel-header font-mono">
+            <span class="hud-panel-title">// FILE: ABOUT_METADATA.json</span>
+            <span class="hud-window-dots"><span></span><span></span><span></span></span>
+          </div>
+          <div class="hud-panel-body">
+            <h2 class="section-title">ABOUT ME</h2>
+            <p class="about-lead">I am a <span class="highlight">Full Stack Developer</span> and <span class="highlight">AI/ML Enthusiast</span> focused on constructing systems that think and designing interfaces that feel.</p>
+            
+            <div class="about-grid">
+              <div class="about-metric font-mono">
+                <span class="metric-val font-space">CSE</span>
+                <span class="metric-label">Placement Joint Secretary</span>
+              </div>
+              <div class="about-metric font-mono">
+                <span class="metric-val font-space">RIC</span>
+                <span class="metric-label">Core Robotics Member</span>
+              </div>
+            </div>
+            
+            <div class="about-tagline font-mono font-italic">
+              "Building the gap between raw compute and tactile human experience."
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROJECTS SECTION -->
+      <section class="space-section" id="projects-section" data-depth="2">
+        <div class="projects-container">
+          <h2 class="section-title center font-space">PROJECTS</h2>
+          
+          <div class="projects-grid">
+            <!-- Project 1 -->
+            <div class="hud-panel glass-card project-card" data-tilt data-tilt-max="8">
+              <div class="hud-panel-header font-mono">
+                <span class="hud-panel-title">01 / ECO_SENTINEL.AI</span>
+              </div>
+              <div class="hud-panel-body">
+                <h3 class="project-name">EcoSentinel</h3>
+                <p class="project-desc">YOLOv8 real-time wildlife intrusion detection system. Designed for forestry security and automated boundary alerts.</p>
+                <div class="project-stats font-mono">
+                  <div class="stat-item"><span class="stat-lbl">mAP:</span> <span class="stat-val">94.3%</span></div>
+                  <div class="stat-item"><span class="stat-lbl">SPEED:</span> <span class="stat-val">30fps</span></div>
+                  <div class="stat-item"><span class="stat-lbl">ROLE:</span> <span class="stat-val">Team Lead (4)</span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="hud-panel glass-card project-card" data-tilt data-tilt-max="8">
+              <div class="hud-panel-header font-mono">
+                <span class="hud-panel-title">02 / COLLEGE_TRACKER.SYS</span>
+              </div>
+              <div class="hud-panel-body">
+                <h3 class="project-name">College Tracker</h3>
+                <p class="project-desc">Administrative issues management portal built for streamlining campus communications and resolutions.</p>
+                <div class="project-links font-mono">
+                  <a href="https://collegetrackerapp-55633.web.app" target="_blank" rel="noopener noreferrer" class="hud-btn glow-btn">
+                    DEPLOYED_APP_LAUNCH <span class="arrow">&rarr;</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="hud-panel glass-card project-card" data-tilt data-tilt-max="8">
+              <div class="hud-panel-header font-mono">
+                <span class="hud-panel-title">03 / PORTFOLIO_V1.WEB</span>
+              </div>
+              <div class="hud-panel-body">
+                <h3 class="project-name">Portfolio v1</h3>
+                <p class="project-desc">The original personal archive site. Static landing built with HTML, CSS, and clean semantic structure.</p>
+                <div class="project-links font-mono">
+                  <a href="https://idreesmohamed.github.io" target="_blank" rel="noopener noreferrer" class="hud-btn">
+                    V1_ARCHIVE_VIEW <span class="arrow">&rarr;</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SKILLS SECTION -->
+      <section class="space-section" id="skills-section" data-depth="3">
+        <div class="hud-panel glass-card skills-panel" data-tilt data-tilt-max="5">
+          <div class="hud-panel-header font-mono">
+            <span class="hud-panel-title">// ACTIVE_MODULE: COGNITIVE_SKILL_CHIPS</span>
+          </div>
+          <div class="hud-panel-body">
+            <h2 class="section-title">SKILLS & TECHNOLOGIES</h2>
+            <div class="skills-cloud">
+              <div class="skill-chip font-mono" data-depth="0.1"><span class="dot"></span>Python</div>
+              <div class="skill-chip font-mono" data-depth="0.15"><span class="dot"></span>Java</div>
+              <div class="skill-chip font-mono" data-depth="0.08"><span class="dot"></span>JavaScript</div>
+              <div class="skill-chip font-mono" data-depth="0.12"><span class="dot"></span>YOLOv8</div>
+              <div class="skill-chip font-mono" data-depth="0.05"><span class="dot"></span>Three.js</div>
+              <div class="skill-chip font-mono" data-depth="0.18"><span class="dot"></span>GSAP</div>
+              <div class="skill-chip font-mono" data-depth="0.07"><span class="dot"></span>HTML/CSS</div>
+              <div class="skill-chip font-mono" data-depth="0.13"><span class="dot"></span>JDBC</div>
+              <div class="skill-chip font-mono" data-depth="0.11"><span class="dot"></span>Servlets</div>
+              <div class="skill-chip font-mono" data-depth="0.09"><span class="dot"></span>JSP</div>
+              <div class="skill-chip font-mono" data-depth="0.16"><span class="dot"></span>Firebase</div>
+              <div class="skill-chip font-mono" data-depth="0.14"><span class="dot"></span>Git</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ACHIEVEMENTS SECTION -->
+      <section class="space-section" id="achievements-section" data-depth="4">
+        <div class="achievements-container">
+          <h2 class="section-title center font-space">ACHIEVEMENTS</h2>
+          
+          <div class="achievements-list">
+            <!-- Achievement 1 -->
+            <div class="achievement-row hud-panel glass-card" data-tilt data-tilt-max="5">
+              <div class="achievement-icon font-mono hud-accent">01</div>
+              <div class="achievement-details">
+                <h4 class="achievement-title">24-Hour Cybersecurity & Blockchain Hackathon</h4>
+                <p class="achievement-desc font-mono muted">Participant & developer creating robust distributed trust validation models.</p>
+              </div>
+            </div>
+
+            <!-- Achievement 2 -->
+            <div class="achievement-row hud-panel glass-card" data-tilt data-tilt-max="5">
+              <div class="achievement-icon font-mono hud-accent">02</div>
+              <div class="achievement-details">
+                <h4 class="achievement-title">Cybersecurity & Social Media Safety Certification</h4>
+                <p class="achievement-desc font-mono muted">Skillcamp certification in modern threat models and identity defense.</p>
+              </div>
+            </div>
+
+            <!-- Achievement 3 -->
+            <div class="achievement-row hud-panel glass-card" data-tilt data-tilt-max="5">
+              <div class="achievement-icon font-mono hud-accent">03</div>
+              <div class="achievement-details">
+                <h4 class="achievement-title">Placement Joint Secretary</h4>
+                <p class="achievement-desc font-mono muted">Elected leadership position for the Department of Computer Science & Engineering.</p>
+              </div>
+            </div>
+
+            <!-- Achievement 4 -->
+            <div class="achievement-row hud-panel glass-card" data-tilt data-tilt-max="5">
+              <div class="achievement-icon font-mono hud-accent">04</div>
+              <div class="achievement-details">
+                <h4 class="achievement-title">Core Member, Robotics Intelligence Center</h4>
+                <p class="achievement-desc font-mono muted">Developing hardware firmware interface protocols and real-time computer vision logic.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT SECTION -->
+      <section class="space-section" id="contact-section" data-depth="5">
+        <div class="hud-panel glass-card contact-panel" data-tilt data-tilt-max="10">
+          <div class="hud-panel-header font-mono">
+            <span class="hud-panel-title">// TRANSMIT_SIGNAL: INITIATE_COMMUNICATION</span>
+          </div>
+          <div class="hud-panel-body center">
+            <h2 class="section-title">CONTACT VOID</h2>
+            <p class="contact-prompt">Establish connection coordinates. Signal status: READY.</p>
+            
+            <div class="contact-links">
+              <a href="mailto:mohamedidrees.official@gmail.com" class="contact-item glow-hover">
+                <span class="contact-label font-mono">EMAIL</span>
+                <span class="contact-val">mohamedidrees.official@gmail.com</span>
+              </a>
+              <a href="https://github.com/IdreesMohamed" target="_blank" rel="noopener noreferrer" class="contact-item glow-hover">
+                <span class="contact-label font-mono">GITHUB</span>
+                <span class="contact-val">github.com/IdreesMohamed</span>
+              </a>
+              <a href="https://linkedin.com/in/mohamed-idrees-s" target="_blank" rel="noopener noreferrer" class="contact-item glow-hover">
+                <span class="contact-label font-mono">LINKEDIN</span>
+                <span class="contact-val">linkedin.com/in/mohamed-idrees-s</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- Scroll Spacer to trigger GSAP scroll timeline -->
+  <div class="scroll-wrapper"></div>
+
+  <!-- Script CDN Imports -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
